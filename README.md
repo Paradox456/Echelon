@@ -39,6 +39,8 @@ Echelon Dashboard brings together AI, analytics, and design to create a smart, e
 ```bash
 git clone https://github.com/<yourusername>/echelon.git
 cd echelon
+```
+---
 
 ## 📝 Daily Updates
 
