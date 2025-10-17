@@ -39,3 +39,22 @@ Echelon Dashboard brings together AI, analytics, and design to create a smart, e
 ```bash
 git clone https://github.com/<yourusername>/echelon.git
 cd echelon
+
+## 📝 Daily Updates
+
+Track your daily progress and contributions. Update each day with your accomplishments and next steps. Each bullet point can be a separate commit to get darker contribution squares.
+
+### How to use
+1. Add a new entry for today.
+2. Include multiple bullet points for tasks or notes to make multiple commits.
+3. Include a “Next Steps” bullet for planned actions.
+4. Commit and push each change.
+
+### Updates Log
+
+#### 2025-10-16
+- Started GitHub daily commit habit.
+- Added Daily Updates section in README.
+- Connected backend to MongoDB
+- **Next Steps:** Add first React component and push updates.
+
