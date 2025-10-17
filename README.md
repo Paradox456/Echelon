@@ -58,5 +58,5 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Started GitHub daily commit habit.
 - Added Daily Updates section in README.
 - Connected backend to MongoDB
-- **Next Steps:** Finish the rest of the backend files, also download and configure tailwindcss and add first React component and push updates, 
+- **Next Steps:** Finish the rest of the backend files, also download and configure tailwindcss and add first React component and push updates.
 
