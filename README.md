@@ -60,3 +60,8 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Connected backend to MongoDB
 - **Next Steps:** Finish the rest of the backend files, also download and configure tailwindcss and add first React component and push updates.
 
+#### 2025-10-17
+-Started on Adding more backend features
+-Added Dashboard code
+- **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
+
