@@ -69,3 +69,7 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Added OPENAI Key
 - **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
 
+#### 2025-10-20
+- Added Tasks.jsx
+- **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
+
