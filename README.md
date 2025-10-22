@@ -73,3 +73,6 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Added Tasks.jsx
 - **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
 
+#### 2025-10-21
+- Added Header.jsx
+- **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
