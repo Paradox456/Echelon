@@ -79,4 +79,5 @@ Track your daily progress and contributions. Update each day with your accomplis
 
 #### 2025-10-22
 - Created JWT Token and Implementation
+- Added constants.js and formatDate.js
 - **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
