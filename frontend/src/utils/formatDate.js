@@ -11,7 +11,6 @@ export const formatDate = (dateString) => {
     });
   };
   
-  // Optional: format time too
   export const formatDateTime = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
