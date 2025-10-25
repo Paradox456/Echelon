@@ -84,4 +84,5 @@ Track your daily progress and contributions. Update each day with your accomplis
 
 #### 2025-10-24 
 - Created app.ts for the backend
+- Created the auth.tests.js file
 - **Next Steps:** Finish some more backend features,add more frontend features, add OAuth and connect backend to frontend.
