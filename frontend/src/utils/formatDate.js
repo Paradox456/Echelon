@@ -1,5 +1,3 @@
-// frontend/src/utils/formatDate.js
-
 export const formatDate = (dateString) => {
     if (!dateString) return "";
     const date = new Date(dateString);
