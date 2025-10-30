@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig({
   root: path.resolve(__dirname, "frontend"),
-  plugins: [react(), tailwind()],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "frontend/src"),
