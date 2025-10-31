@@ -1,0 +1,23 @@
+@keyframes glow-pulse {
+    0%, 100% {
+      color: #22d3ee;
+      text-shadow: 0 0 20px rgba(34, 211, 238, 0.8),
+                   0 0 40px rgba(34, 211, 238, 0.6),
+                   0 0 60px rgba(34, 211, 238, 0.4);
+      opacity: 1;
+    }
+    50% {
+      color: #06b6d4;
+      text-shadow: 0 0 30px rgba(34, 211, 238, 1),
+                   0 0 60px rgba(34, 211, 238, 0.8),
+                   0 0 90px rgba(34, 211, 238, 0.6);
+      opacity: 0.9;
+    }
+  }
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+.dashboard-container {
+    background-color: black;
+  }

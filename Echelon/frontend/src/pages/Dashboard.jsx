@@ -1,10 +1,10 @@
 import React from "react";
+import "./Dashboard.css";
 
 const Dashboard = () => (
-  <div style={{ background: "black", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-    <h1 style={{ fontSize: "32px", fontWeight: "bold" }}>Good Morning!</h1>
+  <div className="h-screen flex items-start justify-end p-8">
+    <h1 className="text-8xl font-bold glow-pulse">Good Morning!</h1>
   </div>
 );
 
 export default Dashboard;
-
