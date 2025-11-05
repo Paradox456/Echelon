@@ -17,7 +17,6 @@
   .glow-pulse {
     animation: glow-pulse 2s ease-in-out infinite;
   }
-
-.dashboard-container {
+  .dashboard-container {
     background-color: black;
   }

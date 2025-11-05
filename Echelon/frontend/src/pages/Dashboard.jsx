@@ -1,91 +1,308 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Activity, CheckCircle, Clock, TrendingUp } from "lucide-react";
-import "./Dashboard.css";
+import React, { useState } from 'react';
+import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn } from 'lucide-react';
+import './Dashboard.css';
 
-const Dashboard = () => {
-  const [greeting, setGreeting] = useState("Good Morning");
+export default function Dashboard() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
-  useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour >= 12 && hour < 17) setGreeting("Good Afternoon");
-    else if (hour >= 17 || hour < 5) setGreeting("Good Evening");
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted');
+  };
 
-  const stats = [
-    { label: "Tasks Completed", value: 12, icon: <CheckCircle size={24} /> },
-    { label: "Active Projects", value: 3, icon: <Activity size={24} /> },
-    { label: "Focus Time (hrs)", value: 5.5, icon: <Clock size={24} /> },
-    { label: "Productivity", value: "87%", icon: <TrendingUp size={24} /> },
-  ];
+  if (showLogin) {
+    return (
+      <div className="dashboard-container" style={{ minHeight: '100vh', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+        <div style={{ width: '100%', maxWidth: '450px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', justifyContent: 'center' }}>
+            <div style={{ width: '48px', height: '48px', background: 'linear-gradient(to bottom right, #14b8a6, #06b6d4)', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold', boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }}>
+              E
+            </div>
+            <div>
+              <h1 className="glow-pulse" style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>Echelon</h1>
+              <p style={{ fontSize: '0.875rem', color: '#9ca3af', margin: 0 }}>AI Productivity</p>
+            </div>
+          </div>
 
-  const activities = [
-    { time: "10:30 AM", action: "Finished Sprint Planning" },
-    { time: "9:00 AM", action: "Pushed commits to GitHub" },
-    { time: "Yesterday", action: "Deployed new Echelon build" },
-  ];
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '1rem', padding: '2rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
+              <button
+                onClick={() => setIsLogin(true)}
+                style={{
+                  flex: 1,
+                  padding: '0.5rem 1rem',
+                  background: isLogin ? 'linear-gradient(to right, #14b8a6, #06b6d4)' : 'transparent',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  color: isLogin ? 'white' : '#64748b',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  boxShadow: isLogin ? '0 0 20px rgba(6, 182, 212, 0.4)' : 'none'
+                }}
+              >
+                Sign In
+              </button>
+              <button
+                onClick={() => setIsLogin(false)}
+                style={{
+                  flex: 1,
+                  padding: '0.5rem 1rem',
+                  background: !isLogin ? 'linear-gradient(to right, #14b8a6, #06b6d4)' : 'transparent',
+                  border: 'none',
+                  borderRadius: '0.5rem',
+                  color: !isLogin ? 'white' : '#64748b',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  boxShadow: !isLogin ? '0 0 20px rgba(6, 182, 212, 0.4)' : 'none'
+                }}
+              >
+                Sign Up
+              </button>
+            </div>
+
+            {!isLogin && (
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
+                />
+              </div>
+            )}
+
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="your@email.com"
+                style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
+                Password
+              </label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
+              />
+            </div>
+
+            {isLogin && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem', marginBottom: '1rem' }}>
+                <label style={{ color: '#94a3b8', cursor: 'pointer' }}>
+                  <input type="checkbox" style={{ marginRight: '0.5rem' }} />
+                  Remember me
+                </label>
+                <button className="glow-pulse" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.875rem', padding: 0 }}>
+                  Forgot password?
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={handleSubmit}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                background: 'linear-gradient(to right, #14b8a6, #06b6d4)',
+                border: 'none',
+                borderRadius: '0.5rem',
+                color: 'white',
+                fontWeight: '600',
+                cursor: 'pointer',
+                fontSize: '1rem',
+                marginBottom: '1rem',
+                boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)'
+              }}
+            >
+              {isLogin ? 'Sign In' : 'Create Account'}
+            </button>
+
+            <div style={{ textAlign: 'center', fontSize: '0.875rem', color: '#94a3b8', marginBottom: '1rem' }}>
+              {isLogin ? "Don't have an account? " : "Already have an account? "}
+              <button
+                onClick={() => setIsLogin(!isLogin)}
+                className="glow-pulse"
+                style={{ background: 'none', border: 'none', fontWeight: '500', cursor: 'pointer', fontSize: '0.875rem', padding: 0 }}
+              >
+                {isLogin ? 'Sign up' : 'Sign in'}
+              </button>
+            </div>
+
+            <button
+              onClick={() => setShowLogin(false)}
+              style={{ width: '100%', padding: '0.5rem', background: 'none', border: 'none', color: '#94a3b8', fontSize: '0.875rem', cursor: 'pointer' }}
+            >
+              Back to home
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-10 flex flex-col gap-10">
-      {/* Greeting */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex justify-between items-center"
-      >
-        <h1 className="text-6xl font-extrabold glow-pulse">
-          {greeting}, Annafi!
-        </h1>
-        <p className="text-gray-400 text-lg">{new Date().toLocaleDateString()}</p>
-      </motion.div>
+    <div className="dashboard-container" style={{ minHeight: '100vh', color: '#ffffff', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      {/* Navigation */}
+      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1.5rem 2rem', borderBottom: '1px solid #1a1a1a' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ width: '48px', height: '48px', background: 'linear-gradient(to bottom right, #14b8a6, #06b6d4)', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold', boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }}>
+            E
+          </div>
+          <div>
+            <h1 className="glow-pulse" style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>Echelon</h1>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>AI Productivity</p>
+          </div>
+        </div>
+        <button 
+          onClick={() => setShowLogin(true)}
+          style={{ padding: '0.5rem 1.5rem', background: 'linear-gradient(to right, #14b8a6, #06b6d4)', border: 'none', borderRadius: '0.5rem', color: 'white', fontWeight: '500', cursor: 'pointer', boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+        >
+          <LogIn size={16} />
+          Login
+        </button>
+      </nav>
 
-      {/* Stats Section */}
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.8 }}
-      >
-        {stats.map((item, i) => (
-          <motion.div
-            key={i}
-            whileHover={{ scale: 1.05 }}
-            className="bg-gray-900/70 backdrop-blur-md rounded-2xl p-6 shadow-lg flex flex-col gap-3 border border-gray-800"
-          >
-            <div className="flex items-center gap-3 text-indigo-400">
-              {item.icon}
-              <span className="text-xl font-semibold">{item.label}</span>
-            </div>
-            <h2 className="text-4xl font-bold mt-2">{item.value}</h2>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Recent Activity */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="bg-gray-900/50 p-6 rounded-2xl border border-gray-800 shadow-lg"
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-indigo-400">
-          Recent Activity
-        </h2>
-        <ul className="space-y-3">
-          {activities.map((a, i) => (
-            <li
-              key={i}
-              className="flex justify-between items-center bg-gray-800/40 p-3 rounded-xl hover:bg-gray-800/70 transition"
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '3rem 2rem' }}>
+        {/* Hero Section */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', alignItems: 'center', marginBottom: '4rem' }}>
+          <div>
+            <h2 className="glow-pulse" style={{ fontSize: '3rem', fontWeight: 'bold', marginBottom: '1rem', lineHeight: '1.2' }}>
+              Your AI-Powered Productivity Partner
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: '#cbd5e1', marginBottom: '2rem' }}>
+              Track habits, manage tasks, and achieve your goals with intelligent insights and personalized recommendations.
+            </p>
+            <button
+              onClick={() => setShowLogin(true)}
+              style={{ padding: '1rem 2rem', background: 'linear-gradient(to right, #14b8a6, #06b6d4)', border: 'none', borderRadius: '0.5rem', color: 'white', fontSize: '1.125rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }}
             >
-              <span>{a.action}</span>
-              <span className="text-sm text-gray-500">{a.time}</span>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
+              Get Started Free
+            </button>
+          </div>
+
+          {/* Dashboard Preview */}
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '1rem', padding: '2rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0, color: 'white' }}>Dashboard Preview</h3>
+              <span style={{ fontSize: '0.875rem', color: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.1)', border: '1px solid rgba(34, 211, 238, 0.2)', padding: '0.25rem 0.75rem', borderRadius: '9999px' }}>Demo</span>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+              <div style={{ backgroundColor: '#000000', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1rem' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: 'rgba(34, 197, 94, 0.2)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem' }}>
+                  <CheckCircle size={24} color="#22c55e" />
+                </div>
+                <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: 'white' }}>12</div>
+                <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Tasks Completed</div>
+              </div>
+
+              <div style={{ backgroundColor: '#000000', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1rem' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: 'rgba(249, 115, 22, 0.2)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem' }}>
+                  <Flame size={24} color="#fb923c" />
+                </div>
+                <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: 'white' }}>24</div>
+                <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Day Streak</div>
+              </div>
+
+              <div style={{ backgroundColor: '#000000', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1rem' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: 'rgba(236, 72, 153, 0.2)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem' }}>
+                  <TrendingUp size={24} color="#ec4899" />
+                </div>
+                <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: 'white' }}>5</div>
+                <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Active Goals</div>
+              </div>
+
+              <div style={{ backgroundColor: '#000000', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1rem' }}>
+                <div style={{ width: '40px', height: '40px', backgroundColor: 'rgba(59, 130, 246, 0.2)', borderRadius: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '0.75rem' }}>
+                  <BarChart3 size={24} color="#3b82f6" />
+                </div>
+                <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.25rem', color: 'white' }}>89%</div>
+                <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Completion Rate</div>
+              </div>
+            </div>
+
+            <div style={{ backgroundColor: '#000000', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1rem' }}>
+              <h4 style={{ fontWeight: '600', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'white', margin: '0 0 0.75rem 0' }}>
+                <Target className="glow-pulse" size={20} />
+                Today's Focus
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: '#94a3b8' }}>
+                  <div style={{ width: '8px', height: '8px', backgroundColor: '#22c55e', borderRadius: '50%' }}></div>
+                  Morning workout completed
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: '#94a3b8' }}>
+                  <div className="glow-pulse" style={{ width: '8px', height: '8px', backgroundColor: '#06b6d4', borderRadius: '50%' }}></div>
+                  Review project proposal
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: '#94a3b8' }}>
+                  <div className="glow-pulse" style={{ width: '8px', height: '8px', backgroundColor: '#14b8a6', borderRadius: '50%' }}></div>
+                  Read for 30 minutes
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem' }}>
+            <CheckCircle size={40} color="#22c55e" style={{ marginBottom: '1rem' }} />
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.5rem', color: 'white', margin: '0 0 0.5rem 0' }}>Task Management</h3>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>Organize and complete tasks efficiently</p>
+          </div>
+
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem' }}>
+            <Flame size={40} color="#fb923c" style={{ marginBottom: '1rem' }} />
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.5rem', color: 'white', margin: '0 0 0.5rem 0' }}>Habit Tracking</h3>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>Build streaks and maintain consistency</p>
+          </div>
+
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem' }}>
+            <TrendingUp size={40} color="#ec4899" style={{ marginBottom: '1rem' }} />
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.5rem', color: 'white', margin: '0 0 0.5rem 0' }}>Goal Setting</h3>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>Track progress toward your objectives</p>
+          </div>
+
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem' }}>
+            <BarChart3 size={40} color="#3b82f6" style={{ marginBottom: '1rem' }} />
+            <h3 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.5rem', color: 'white', margin: '0 0 0.5rem 0' }}>Analytics</h3>
+            <p style={{ fontSize: '0.875rem', color: '#94a3b8', margin: 0 }}>Gain insights from your data</p>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'center' }}>
+            <div className="glow-pulse" style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>10K+</div>
+            <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Active Users</div>
+          </div>
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'center' }}>
+            <div className="glow-pulse" style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>500K+</div>
+            <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Tasks Completed</div>
+          </div>
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#22c55e' }}>1M+</div>
+            <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Habits Tracked</div>
+          </div>
+          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '0.75rem', padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#fb923c' }}>98%</div>
+            <div style={{ fontSize: '0.875rem', color: '#94a3b8' }}>Satisfaction Rate</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default Dashboard;
+}
