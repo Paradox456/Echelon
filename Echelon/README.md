@@ -107,3 +107,8 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Came Home late from work
 - Work on Dashboard features
 - Next Steps: Work on more Dashboard features and try to finish as much as possible
+
+#### 2025-11-04 
+- Created the Dashboard portion of the project
+- Make some tweaks to it
+- Next Steps: Create the Login portion of the project
