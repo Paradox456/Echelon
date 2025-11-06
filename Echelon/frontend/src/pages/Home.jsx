@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn } from 'lucide-react';
-import './Dashboard.css';
+import './Home.css';
 
-export default function Dashboard() {
+export default function Home({ onNavigateToSignUp }) {
   const [showLogin, setShowLogin] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted');
+    // Redirect back to dashboard after login
+    setShowLogin(false);
+  };
+
+  const handleGoToSignUp = () => {
+    setShowLogin(false);
+    if (onNavigateToSignUp) {
+      onNavigateToSignUp();
+    }
   };
 
   if (showLogin) {
@@ -26,55 +34,7 @@ export default function Dashboard() {
           </div>
 
           <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '1rem', padding: '2rem' }}>
-            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
-              <button
-                onClick={() => setIsLogin(true)}
-                style={{
-                  flex: 1,
-                  padding: '0.5rem 1rem',
-                  background: isLogin ? 'linear-gradient(to right, #14b8a6, #06b6d4)' : 'transparent',
-                  border: 'none',
-                  borderRadius: '0.5rem',
-                  color: isLogin ? 'white' : '#64748b',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  fontSize: '1rem',
-                  boxShadow: isLogin ? '0 0 20px rgba(6, 182, 212, 0.4)' : 'none'
-                }}
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => setIsLogin(false)}
-                style={{
-                  flex: 1,
-                  padding: '0.5rem 1rem',
-                  background: !isLogin ? 'linear-gradient(to right, #14b8a6, #06b6d4)' : 'transparent',
-                  border: 'none',
-                  borderRadius: '0.5rem',
-                  color: !isLogin ? 'white' : '#64748b',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  fontSize: '1rem',
-                  boxShadow: !isLogin ? '0 0 20px rgba(6, 182, 212, 0.4)' : 'none'
-                }}
-              >
-                Sign Up
-              </button>
-            </div>
-
-            {!isLogin && (
-              <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
-                />
-              </div>
-            )}
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: 'white', textAlign: 'center', margin: '0 0 1.5rem 0' }}>Sign In</h2>
 
             <div style={{ marginBottom: '1rem' }}>
               <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
@@ -98,17 +58,15 @@ export default function Dashboard() {
               />
             </div>
 
-            {isLogin && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem', marginBottom: '1rem' }}>
-                <label style={{ color: '#94a3b8', cursor: 'pointer' }}>
-                  <input type="checkbox" style={{ marginRight: '0.5rem' }} />
-                  Remember me
-                </label>
-                <button className="glow-pulse" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.875rem', padding: 0 }}>
-                  Forgot password?
-                </button>
-              </div>
-            )}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem', marginBottom: '1rem' }}>
+              <label style={{ color: '#94a3b8', cursor: 'pointer' }}>
+                <input type="checkbox" style={{ marginRight: '0.5rem' }} />
+                Remember me
+              </label>
+              <button className="glow-pulse" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.875rem', padding: 0, color: '#94a3b8' }}>
+                Forgot password?
+              </button>
+            </div>
 
             <button
               onClick={handleSubmit}
@@ -126,17 +84,17 @@ export default function Dashboard() {
                 boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)'
               }}
             >
-              {isLogin ? 'Sign In' : 'Create Account'}
+              Sign In
             </button>
 
             <div style={{ textAlign: 'center', fontSize: '0.875rem', color: '#94a3b8', marginBottom: '1rem' }}>
-              {isLogin ? "Don't have an account? " : "Already have an account? "}
+              Don't have an account?{' '}
               <button
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={handleGoToSignUp}
                 className="glow-pulse"
-                style={{ background: 'none', border: 'none', fontWeight: '500', cursor: 'pointer', fontSize: '0.875rem', padding: 0 }}
+                style={{ background: 'none', border: 'none', fontWeight: '500', cursor: 'pointer', fontSize: '0.875rem', padding: 0, color: '#22d3ee' }}
               >
-                {isLogin ? 'Sign up' : 'Sign in'}
+                Sign up
               </button>
             </div>
 
@@ -170,7 +128,7 @@ export default function Dashboard() {
           style={{ padding: '0.5rem 1.5rem', background: 'linear-gradient(to right, #14b8a6, #06b6d4)', border: 'none', borderRadius: '0.5rem', color: 'white', fontWeight: '500', cursor: 'pointer', boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
         >
           <LogIn size={16} />
-          Login
+          Sign In
         </button>
       </nav>
 
@@ -306,3 +264,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+
+
