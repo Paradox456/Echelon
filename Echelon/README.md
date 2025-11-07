@@ -112,3 +112,8 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Created the Dashboard portion of the project
 - Make some tweaks to it
 - Next Steps: Create the Login portion of the project
+
+#### 2025-11-06
+- Separated the Sign In and Sign Up section
+- Removed the Get Started Free button
+- **Next Steps:** Edit the Sign In and Sign Up section with OAuth and once someone is logged in it redirects them back to the home page with their pfp on top.
