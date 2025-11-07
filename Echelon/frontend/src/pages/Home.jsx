@@ -142,12 +142,7 @@ export default function Home({ onNavigateToSignUp }) {
             <p style={{ fontSize: '1.25rem', color: '#cbd5e1', marginBottom: '2rem' }}>
               Track habits, manage tasks, and achieve your goals with intelligent insights and personalized recommendations.
             </p>
-            <button
-              onClick={() => setShowLogin(true)}
-              style={{ padding: '1rem 2rem', background: 'linear-gradient(to right, #14b8a6, #06b6d4)', border: 'none', borderRadius: '0.5rem', color: 'white', fontSize: '1.125rem', fontWeight: '600', cursor: 'pointer', boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }}
-            >
-              Get Started Free
-            </button>
+
           </div>
 
           {/* Dashboard Preview */}
@@ -264,7 +259,3 @@ export default function Home({ onNavigateToSignUp }) {
     </div>
   );
 }
-
-
-
-
