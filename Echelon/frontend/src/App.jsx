@@ -1,17 +1,44 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
 
+  // Handle browser back button
+  useEffect(() => {
+    // Push initial state
+    window.history.pushState({ page: 'home' }, '');
+
+    const handlePopState = (event) => {
+      if (event.state && event.state.page) {
+        setCurrentPage(event.state.page);
+      } else {
+        setCurrentPage('home');
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigateToSignUp = () => {
+    setCurrentPage('signup');
+    window.history.pushState({ page: 'signup' }, '');
+  };
+
+  const handleNavigateToHome = () => {
+    setCurrentPage('home');
+    window.history.pushState({ page: 'home' }, '');
+  };
+
   return (
     <>
       {currentPage === 'home' && (
-        <Home onNavigateToSignUp={() => setCurrentPage('signup')} />
+        <Home onNavigateToSignUp={handleNavigateToSignUp} />
       )}
       {currentPage === 'signup' && (
-        <SignUp onNavigateToHome={() => setCurrentPage('home')} />
+        <SignUp onNavigateToHome={handleNavigateToHome} />
       )}
     </>
   );

@@ -1,113 +1,17 @@
 import React, { useState } from 'react';
 import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn } from 'lucide-react';
+import SignIn from './SignIn';
 import './Home.css';
 
 export default function Home({ onNavigateToSignUp }) {
   const [showLogin, setShowLogin] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted');
-    // Redirect back to dashboard after login
+  const handleBackFromSignIn = () => {
     setShowLogin(false);
-  };
-
-  const handleGoToSignUp = () => {
-    setShowLogin(false);
-    if (onNavigateToSignUp) {
-      onNavigateToSignUp();
-    }
   };
 
   if (showLogin) {
-    return (
-      <div className="dashboard-container" style={{ minHeight: '100vh', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-        <div style={{ width: '100%', maxWidth: '450px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem', justifyContent: 'center' }}>
-            <div style={{ width: '48px', height: '48px', background: 'linear-gradient(to bottom right, #14b8a6, #06b6d4)', borderRadius: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', fontWeight: 'bold', boxShadow: '0 0 30px rgba(6, 182, 212, 0.5)' }}>
-              E
-            </div>
-            <div>
-              <h1 className="glow-pulse" style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>Echelon</h1>
-              <p style={{ fontSize: '0.875rem', color: '#9ca3af', margin: 0 }}>AI Productivity</p>
-            </div>
-          </div>
-
-          <div style={{ backgroundColor: '#0d1b2a', border: '1px solid #1e293b', borderRadius: '1rem', padding: '2rem' }}>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: 'white', textAlign: 'center', margin: '0 0 1.5rem 0' }}>Sign In</h2>
-
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
-                Email
-              </label>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div style={{ marginBottom: '1rem' }}>
-              <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#cbd5e1', marginBottom: '0.5rem' }}>
-                Password
-              </label>
-              <input
-                type="password"
-                placeholder="••••••••"
-                style={{ width: '100%', padding: '0.75rem 1rem', backgroundColor: '#000000', border: '1px solid #334155', borderRadius: '0.5rem', color: 'white', fontSize: '1rem', boxSizing: 'border-box' }}
-              />
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.875rem', marginBottom: '1rem' }}>
-              <label style={{ color: '#94a3b8', cursor: 'pointer' }}>
-                <input type="checkbox" style={{ marginRight: '0.5rem' }} />
-                Remember me
-              </label>
-              <button className="glow-pulse" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.875rem', padding: 0, color: '#94a3b8' }}>
-                Forgot password?
-              </button>
-            </div>
-
-            <button
-              onClick={handleSubmit}
-              style={{
-                width: '100%',
-                padding: '0.75rem',
-                background: 'linear-gradient(to right, #14b8a6, #06b6d4)',
-                border: 'none',
-                borderRadius: '0.5rem',
-                color: 'white',
-                fontWeight: '600',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                marginBottom: '1rem',
-                boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)'
-              }}
-            >
-              Sign In
-            </button>
-
-            <div style={{ textAlign: 'center', fontSize: '0.875rem', color: '#94a3b8', marginBottom: '1rem' }}>
-              Don't have an account?{' '}
-              <button
-                onClick={handleGoToSignUp}
-                className="glow-pulse"
-                style={{ background: 'none', border: 'none', fontWeight: '500', cursor: 'pointer', fontSize: '0.875rem', padding: 0, color: '#22d3ee' }}
-              >
-                Sign up
-              </button>
-            </div>
-
-            <button
-              onClick={() => setShowLogin(false)}
-              style={{ width: '100%', padding: '0.5rem', background: 'none', border: 'none', color: '#94a3b8', fontSize: '0.875rem', cursor: 'pointer' }}
-            >
-              Back to home
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+    return <SignIn onNavigateToSignUp={onNavigateToSignUp} onBack={handleBackFromSignIn} />;
   }
 
   return (
