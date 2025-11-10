@@ -117,3 +117,8 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Separated the Sign In and Sign Up section
 - Removed the Get Started Free button
 - **Next Steps:** Edit the Sign In and Sign Up section with OAuth and once someone is logged in it redirects them back to the home page with their pfp on top.
+
+#### 2025-11-09
+- Added more Login features to the SignIn page
+- Separated the SignIn pages from the Home page
+- **Next Steps:** Add OAuth for the buttons and make the buttons functional
