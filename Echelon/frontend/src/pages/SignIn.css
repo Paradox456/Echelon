@@ -204,7 +204,15 @@
     background-color: #0d1b2a;
   }
   
-  /* Social Login Button */
+  /* Social Login Group */
+  .social-login-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Social Button */
   .social-button {
     display: flex;
     align-items: center;
@@ -214,23 +222,53 @@
     background-color: #000000;
     border: 1px solid #334155;
     border-radius: 0.5rem;
-    color: #ea4335;
+    color: #cbd5e1;
     font-weight: 500;
     cursor: pointer;
     font-size: 0.875rem;
     transition: all 0.3s ease;
     width: 100%;
-    margin-bottom: 1rem;
   }
   
   .social-button:hover {
-    background-color: rgba(234, 67, 53, 0.05);
-    border-color: #ea4335;
-    color: #ff5544;
+    border-color: #475569;
+    background-color: #1a1a1a;
+    color: #ffffff;
   }
   
   .social-button:active {
     transform: scale(0.98);
+  }
+  
+  /* Google Button */
+  .google-button {
+    color: #ea4335;
+  }
+  
+  .google-button:hover {
+    background-color: rgba(234, 67, 53, 0.05);
+    border-color: #ea4335;
+  }
+  
+  /* Discord Button */
+  .discord-button {
+    color: #5865f2;
+  }
+  
+  .discord-button:hover {
+    background-color: rgba(88, 101, 242, 0.05);
+    border-color: #5865f2;
+  }
+  
+  /* Apple Button */
+  .apple-button {
+    color: #ffffff;
+  }
+  
+  .apple-button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
   }
   
   /* Social Icon */
