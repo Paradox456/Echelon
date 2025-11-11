@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 
