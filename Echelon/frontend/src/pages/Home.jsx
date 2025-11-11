@@ -1,13 +1,78 @@
-import React, { useState } from 'react';
-import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 import SignIn from './SignIn';
 import './Home.css';
 
 export default function Home({ onNavigateToSignUp }) {
   const [showLogin, setShowLogin] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatMinimized, setChatMinimized] = useState(false);
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Hey there! I'm Echo, your productivity buddy! 👋 How can I help you today?", sender: 'bot' }
+  ]);
+  const [inputValue, setInputValue] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
   const handleBackFromSignIn = () => {
     setShowLogin(false);
+  };
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const generateBotResponse = (userMessage) => {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    const responses = {
+      hello: "Hey! 👋 Ready to boost your productivity?",
+      help: "I can help you with task management, goal tracking, habit building, and productivity tips! What do you need?",
+      task: "Breaking tasks into smaller steps is the way to go! 💪 What would you like to accomplish?",
+      focus: "Pro tip: Use the Pomodoro Technique - 25 min focus + 5 min break! ⏰ Try it out!",
+      motivation: "You've got this! 🚀 Every small step counts. Keep pushing!",
+      streak: "Streaks are awesome! 🔥 Consistency is key. Keep the momentum going!",
+      goals: "Clear goals = success! 🎯 Break them down and celebrate wins!",
+      default: "That's a great question! Tell me more about what you're working on 💭"
+    };
+
+    for (let key in responses) {
+      if (lowerMessage.includes(key)) {
+        return responses[key];
+      }
+    }
+    return responses.default;
+  };
+
+  const handleSendMessage = () => {
+    if (!inputValue.trim()) return;
+
+    const userMessage = {
+      id: messages.length + 1,
+      text: inputValue,
+      sender: 'user'
+    };
+
+    setMessages([...messages, userMessage]);
+    setInputValue('');
+    setIsLoading(true);
+
+    setTimeout(() => {
+      const botMessage = {
+        id: messages.length + 2,
+        text: generateBotResponse(inputValue),
+        sender: 'bot'
+      };
+      setMessages(prev => [...prev, botMessage]);
+      setIsLoading(false);
+    }, 800);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
   };
 
   if (showLogin) {
@@ -46,7 +111,6 @@ export default function Home({ onNavigateToSignUp }) {
             <p style={{ fontSize: '1.25rem', color: '#cbd5e1', marginBottom: '2rem' }}>
               Track habits, manage tasks, and achieve your goals with intelligent insights and personalized recommendations.
             </p>
-
           </div>
 
           {/* Dashboard Preview */}
@@ -160,6 +224,101 @@ export default function Home({ onNavigateToSignUp }) {
           </div>
         </div>
       </div>
+
+      {/* GEICO-Style Chatbot Container */}
+      <div className={`geico-chat-container ${chatOpen ? 'open' : ''} ${chatMinimized ? 'minimized' : ''}`}>
+        {/* Chat Header with Echo Mascot */}
+        <div className="geico-chat-header">
+          <div className="chat-header-content">
+            <h3>Need help? Chat with Echo! 👋</h3>
+            <div className="chat-header-controls">
+              <button className="chat-control-btn" onClick={() => setChatMinimized(!chatMinimized)}>
+                {chatMinimized ? <Maximize2 size={16} /> : <Minimize2 size={16} />}
+              </button>
+              <button className="chat-control-btn" onClick={() => setChatOpen(false)}>
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Chat Messages */}
+        {!chatMinimized && (
+          <>
+            <div className="geico-chat-messages">
+              {messages.map((message) => (
+                <div key={message.id} className={`geico-message ${message.sender}`}>
+                  {message.sender === 'bot' && <div className="message-avatar">🤖</div>}
+                  <div className="geico-message-bubble">
+                    {message.text}
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="geico-message bot">
+                  <div className="message-avatar">🤖</div>
+                  <div className="geico-message-bubble typing">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Chat Input */}
+            <div className="geico-chat-input-area">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Ask me anything..."
+                className="geico-chat-input"
+              />
+              <button
+                className="geico-send-btn"
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim() || isLoading}
+              >
+                <Send size={18} />
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* GEICO-Style Floating Mascot Button */}
+      {!chatOpen && (
+        <div className="mascot-container" onClick={() => setChatOpen(true)}>
+          <svg viewBox="0 0 200 200" className="mascot-svg">
+            {/* Head */}
+            <circle cx="100" cy="80" r="45" fill="#14b8a6" stroke="#06b6d4" strokeWidth="2"/>
+            
+            {/* Eyes - Big and friendly */}
+            <circle cx="85" cy="70" r="10" fill="#ffffff"/>
+            <circle cx="115" cy="70" r="10" fill="#ffffff"/>
+            <circle cx="85" cy="70" r="6" fill="#000000" className="mascot-eye"/>
+            <circle cx="115" cy="70" r="6" fill="#000000" className="mascot-eye"/>
+            
+            {/* Eyebrows */}
+            <path d="M 75 55 Q 85 50 95 55" stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            <path d="M 105 55 Q 115 50 125 55" stroke="#000" strokeWidth="2" fill="none" strokeLinecap="round"/>
+            
+            {/* Big Smile */}
+            <path d="M 80 95 Q 100 115 120 95" stroke="#000" strokeWidth="3" fill="none" strokeLinecap="round"/>
+            
+            {/* Body */}
+            <circle cx="100" cy="150" r="40" fill="#06b6d4" stroke="#14b8a6" strokeWidth="2"/>
+            
+            {/* Arms */}
+            <circle cx="50" cy="140" r="15" fill="#14b8a6" stroke="#06b6d4" strokeWidth="2"/>
+            <circle cx="150" cy="140" r="15" fill="#14b8a6" stroke="#06b6d4" strokeWidth="2"/>
+          </svg>
+          <div className="mascot-label">Chat Now!</div>
+        </div>
+      )}
     </div>
   );
 }
