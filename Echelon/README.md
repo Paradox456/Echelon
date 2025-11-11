@@ -122,3 +122,7 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Added more Login features to the SignIn page
 - Separated the SignIn pages from the Home page
 - **Next Steps:** Add OAuth for the buttons and make the buttons functional
+
+#### 2025-11-11
+- Added chatbot feature to the home page
+- **Next Steps:** Add OAuth for the buttons and make the buttons functional
