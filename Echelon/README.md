@@ -125,4 +125,5 @@ Track your daily progress and contributions. Update each day with your accomplis
 
 #### 2025-11-11
 - Added chatbot feature to the home page
+- Added credentials for the Google Login Button
 - **Next Steps:** Add OAuth for the buttons and make the buttons functional
