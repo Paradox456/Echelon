@@ -127,3 +127,9 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Added chatbot feature to the home page
 - Added credentials for the Google Login Button
 - **Next Steps:** Add OAuth for the buttons and make the buttons functional
+
+#### 2025-11-22
+- Added proper validation to the SignIn and SignUp page
+- Kept same structure
+- Making chatbot funtional and try to debug
+- **Next Steps:** Add OAuth for the buttons and make the buttons functional
