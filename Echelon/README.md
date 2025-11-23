@@ -132,4 +132,5 @@ Track your daily progress and contributions. Update each day with your accomplis
 - Added proper validation to the SignIn and SignUp page
 - Kept same structure
 - Making chatbot funtional and try to debug
+- Added payment tiers to my frontend
 - **Next Steps:** Add OAuth for the buttons and make the buttons functional
