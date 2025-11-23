@@ -7,17 +7,32 @@ export default function SignUp({ onNavigateToHome }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Email validation
+  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  // Password validation: min 8 chars, at least 1 uppercase, 1 number
+  const validatePassword = (password) => /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
 
-    // Validation
     if (!fullName || !email || !password) {
       setError('Please fill in all fields');
       return;
     }
 
-    console.log('Account created successfully');
+    if (!validateEmail(email)) {
+      setError('Please enter a valid email');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      setError('Password must be at least 8 characters long, include one uppercase letter and one number');
+      return;
+    }
+
+    console.log('Account created successfully:', { fullName, email, password });
     if (onNavigateToHome) {
       onNavigateToHome();
     }
