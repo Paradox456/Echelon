@@ -25,6 +25,17 @@
   position: relative;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black; /* matches your dashboard */
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow-x: hidden; /* prevents horizontal scroll */
+}
+
+
 /* ========== GEICO-STYLE MASCOT BUTTON ========== */
 .mascot-container {
   position: fixed;

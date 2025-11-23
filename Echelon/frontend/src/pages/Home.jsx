@@ -227,6 +227,129 @@ export default function Home({ onNavigateToSignUp }) {
         </div>
       </div>
 
+      {/* Pricing Section */}
+<div style={{ maxWidth: '1280px', margin: '4rem auto', padding: '0 2rem' }}>
+  <h2 className="glow-pulse" style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '2rem', textAlign: 'center' }}>
+    Choose Your Plan
+  </h2>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
+    {/* Free Plan */}
+    <div
+      style={{
+        backgroundColor: '#0d1b2a',
+        border: '1px solid #1e293b',
+        borderRadius: '1rem',
+        padding: '2rem',
+        textAlign: 'center',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)',
+      }}
+    >
+      <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>Free</h3>
+      <p style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#22d3ee', fontWeight: '500' }}>$0 / month</p>
+      <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', color: '#94a3b8', textAlign: 'left' }}>
+        <li>✅ Basic Task Management</li>
+        <li>✅ Habit Tracking</li>
+      </ul>
+      <button
+        style={{
+          padding: '0.75rem 1.5rem',
+          background: 'linear-gradient(to right, #14b8a6, #06b6d4)',
+          border: 'none',
+          borderRadius: '0.75rem',
+          color: 'white',
+          fontWeight: '600',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          boxShadow: '0 4px 15px rgba(6, 182, 212, 0.4)',
+        }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        Get Started
+      </button>
+    </div>
+
+    {/* Pro Plan (Highlighted) */}
+    <div
+      style={{
+        backgroundColor: '#0d1b2a',
+        border: '2px solid #06b6d4',
+        borderRadius: '1rem',
+        padding: '2rem',
+        textAlign: 'center',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 0 25px rgba(6, 182, 212, 0.6)',
+      }}
+      className="glow-pulse"
+    >
+      <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>Pro</h3>
+      <p style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#22d3ee', fontWeight: '500' }}>$14.99 / month</p>
+      <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', color: '#94a3b8', textAlign: 'left' }}>
+        <li>✅ All Free Plan Features</li>
+        <li>✅ AI Insights & Recommendations</li>
+        <li>✅ Advanced Analytics & Reports</li>
+      </ul>
+      <button
+        style={{
+          padding: '0.75rem 1.5rem',
+          background: 'linear-gradient(to right, #06b6d4, #14b8a6)',
+          border: 'none',
+          borderRadius: '0.75rem',
+          color: 'white',
+          fontWeight: '600',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          boxShadow: '0 6px 20px rgba(6, 182, 212, 0.6)',
+        }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        Subscribe
+      </button>
+    </div>
+
+    {/* Enterprise Plan */}
+    <div
+      style={{
+        backgroundColor: '#0d1b2a',
+        border: '1px solid #1e293b',
+        borderRadius: '1rem',
+        padding: '2rem',
+        textAlign: 'center',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)',
+      }}
+    >
+      <h3 style={{ fontSize: '1.5rem', fontWeight: '600', marginBottom: '1rem', color: 'white' }}>Enterprise</h3>
+      <p style={{ fontSize: '1.25rem', marginBottom: '1.5rem', color: '#22d3ee', fontWeight: '500' }}>Contact Us</p>
+      <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.5rem', color: '#94a3b8', textAlign: 'left' }}>
+        <li>✅ All Pro Features</li>
+        <li>✅ Team Collaboration Tools</li>
+        <li>✅ Dedicated Support</li>
+      </ul>
+      <button
+        style={{
+          padding: '0.75rem 1.5rem',
+          background: 'linear-gradient(to right, #14b8a6, #06b6d4)',
+          border: 'none',
+          borderRadius: '0.75rem',
+          color: 'white',
+          fontWeight: '600',
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          boxShadow: '0 4px 15px rgba(6, 182, 212, 0.4)',
+        }}
+        onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+        onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+      >
+        Contact Sales
+      </button>
+    </div>
+  </div>
+</div>
+
+
       {/* GEICO-Style Chatbot Container */}
       <div className={`geico-chat-container ${chatOpen ? 'open' : ''} ${chatMinimized ? 'minimized' : ''}`}>
         {/* Chat Header with Echo Mascot */}
