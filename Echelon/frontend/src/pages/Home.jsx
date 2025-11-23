@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { CheckCircle, Target, TrendingUp, Flame, BarChart3, LogIn, Send, X, Minimize2, Maximize2 } from 'lucide-react';
 import SignIn from './SignIn';
 import './Home.css';
+import axios from 'axios';
 
 export default function Home({ onNavigateToSignUp }) {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,29 +23,7 @@ export default function Home({ onNavigateToSignUp }) {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const generateBotResponse = (userMessage) => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    const responses = {
-      hello: "Hey! 👋 Ready to boost your productivity?",
-      help: "I can help you with task management, goal tracking, habit building, and productivity tips! What do you need?",
-      task: "Breaking tasks into smaller steps is the way to go! 💪 What would you like to accomplish?",
-      focus: "Pro tip: Use the Pomodoro Technique - 25 min focus + 5 min break! ⏰ Try it out!",
-      motivation: "You've got this! 🚀 Every small step counts. Keep pushing!",
-      streak: "Streaks are awesome! 🔥 Consistency is key. Keep the momentum going!",
-      goals: "Clear goals = success! 🎯 Break them down and celebrate wins!",
-      default: "That's a great question! Tell me more about what you're working on 💭"
-    };
-
-    for (let key in responses) {
-      if (lowerMessage.includes(key)) {
-        return responses[key];
-      }
-    }
-    return responses.default;
-  };
-
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
 
     const userMessage = {
@@ -53,19 +32,43 @@ export default function Home({ onNavigateToSignUp }) {
       sender: 'user'
     };
 
-    setMessages([...messages, userMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
-    setTimeout(() => {
-      const botMessage = {
-        id: messages.length + 2,
-        text: generateBotResponse(inputValue),
-        sender: 'bot'
-      };
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-3.5-turbo',
+          messages: [
+            { role: 'system', content: "You are Echo, a helpful productivity assistant. Give clear, concise, and actionable productivity advice." },
+            ...messages.map(m => ({
+              role: m.sender === 'bot' ? 'assistant' : 'user',
+              content: m.text
+            })),
+            { role: 'user', content: userMessage.text }
+          ],
+          max_tokens: 200,
+          temperature: 0.7
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const botText = response.data.choices[0].message.content.trim();
+      const botMessage = { id: messages.length + 2, text: botText, sender: 'bot' };
       setMessages(prev => [...prev, botMessage]);
+    } catch (error) {
+      console.error(error);
+      setMessages(prev => [...prev, { id: messages.length + 2, text: "Sorry, something went wrong 🤖", sender: 'bot' }]);
+    } finally {
       setIsLoading(false);
-    }, 800);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -74,7 +77,6 @@ export default function Home({ onNavigateToSignUp }) {
       handleSendMessage();
     }
   };
-
   if (showLogin) {
     return <SignIn onNavigateToSignUp={onNavigateToSignUp} onBack={handleBackFromSignIn} />;
   }

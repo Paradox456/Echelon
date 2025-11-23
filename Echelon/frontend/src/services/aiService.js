@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const openai = new OpenAI({
-  apiKey: process.env.API_KEY,
+  apiKey: process.env.REACT_APP_OPENAPI_API_KEY,
 });
 
 export async function generateResponse(prompt) {
