@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",                      // Modern JS target
+      "lib": ["DOM", "DOM.Iterable", "ESNext"], 
+      "allowJs": true,                         // Allows importing JS files
+      "skipLibCheck": true,                     // Skip type checks on dependencies
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true, 
+      "strict": true,                          // Enable strict type checking
+      "forceConsistentCasingInFileNames": true,
+      "module": "ESNext",
+      "moduleResolution": "Node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,                          // Don't emit JS files; Vite handles that
+      "jsx": "react-jsx",                      // JSX transform for React 18+
+      "baseUrl": ".",                           // Base path for imports
+      "paths": {                               // Optional: path aliases
+        "@components/*": ["src/components/*"],
+        "@pages/*": ["src/pages/*"],
+        "@utils/*": ["src/utils/*"]
+      }
+    },
+    "include": ["src"],                        // Include your source folder
+    "exclude": ["node_modules", "dist"]        // Exclude output & dependencies
+  }
+  
